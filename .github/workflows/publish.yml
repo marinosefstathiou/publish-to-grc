@@ -1,0 +1,15 @@
+name: CI on push
+on:
+  push:
+    branches: [ master ]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+    - name: Run build
+      run: |
+       docker build . --tag ghcr.io/mpapai04/hello-docker-gcr-demo:latest
+       docker run ghcr.io/mpapai04/hello-docker-gcr-demo:latest
+       docker push ghcr.io/mpapai04/hello-docker-gcr-demo:latest

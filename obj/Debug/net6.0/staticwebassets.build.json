@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "2BENHRQdedTt8bNiqFR3pys61T0bDynzFQPQLsdNaqE=",
+  "Source": "KubeTestAPI",
+  "BasePath": "_content/KubeTestAPI",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

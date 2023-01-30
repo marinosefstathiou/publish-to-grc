@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kubetestapi-deployment
+spec:
+  selector:
+    matchLabels:
+      app: kubetestapi-deployment
+  template:
+    metadata:
+      labels:
+        app:  kubetestapi-deployment
+    spec:
+      containers:
+      - name:  kubetestapi-deployment
+        image: mp185316/uee:ueemicroservice
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 80
+      imagePullSecrets:
+        - name: regcred
