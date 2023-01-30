@@ -9,7 +9,11 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v2
     - name: Run build
-      run: |
-       docker build . --tag ghcr.io/marinosefstathiou/hello-docker-gcr-demo:latest
-       docker run ghcr.io/marinosefstathiou/hello-docker-gcr-demo:latest
-       docker push ghcr.io/marinosefstathiou/hello-docker-gcr-demo:latest
+      with:
+       registry: ghcr.io
+       username: marinosefstathiou
+       password: secret
+       run: |
+         docker build . --tag ghcr.io/marinosefstathiou/hello-docker-gcr-demo:latest
+         docker run ghcr.io/marinosefstathiou/hello-docker-gcr-demo:latest
+         docker push ghcr.io/marinosefstathiou/hello-docker-gcr-demo:latest
