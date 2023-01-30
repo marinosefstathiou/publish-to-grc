@@ -7,10 +7,10 @@ EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
-COPY ["KubeTestAPI.csproj", "./"]
-RUN dotnet restore "KubeTestAPI.csproj"
+COPY ["KubeTestAPI/KubeTestAPI.csproj", "KubeTestAPI/"]
+RUN dotnet restore "KubeTestAPI/KubeTestAPI.csproj"
 COPY . .
-WORKDIR "/src/."
+WORKDIR "/src/KubeTestAPI"
 RUN dotnet build "KubeTestAPI.csproj" -c Release -o /app/build
 
 FROM build AS publish
