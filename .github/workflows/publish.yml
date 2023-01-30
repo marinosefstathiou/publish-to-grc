@@ -16,6 +16,6 @@ jobs:
        password: ${{ secrets.GITHUB_TOKEN }}
     - name: Run build
       run: |
-         docker build . --tag ghcr.io/marinosefstathiou/hello-docker-gcr-demo:latest
-         docker run ghcr.io/marinosefstathiou/hello-docker-gcr-demo:latest
-         docker push ghcr.io/marinosefstathiou/hello-docker-gcr-demo:latest
+         docker build . --tag ghcr.io/marinosefstathiou/publish-to-grc:latest
+         docker run ghcr.io/marinosefstathiou/publish-to-grc:latest
+         docker push ghcr.io/marinosefstathiou/publish-to-grc:latest
