@@ -4,11 +4,11 @@ WORKDIR /src
 COPY ["KubeTestAPI.csproj", "./"]
 RUN dotnet restore "KubeTestAPI.csproj"
 COPY . .
-WORKDIR "/src/KubeTestAPI"
+WORKDIR "/src/."
 RUN dotnet build "KubeTestAPI.csproj" -c Release -o /app/build
 
 FROM build AS publish
-RUN dotnet publish "KubeTestAPI.csproj" -c Release -o /app/publish
+RUN dotnet publish "KubeTestAPI.csproj" -c Release -o /app/publish /p:UseAppHost=false
 
 FROM base AS final
 WORKDIR /app
