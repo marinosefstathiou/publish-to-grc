@@ -8,12 +8,14 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
-    - name: Run build
+    - name: Login to GHCR
+      uses: docker/login-action@v1
       with:
        registry: ghcr.io
        username: marinosefstathiou
        password: secret
-       run: |
+    - name: Run build
+      run: |
          docker build . --tag ghcr.io/marinosefstathiou/hello-docker-gcr-demo:latest
          docker run ghcr.io/marinosefstathiou/hello-docker-gcr-demo:latest
          docker push ghcr.io/marinosefstathiou/hello-docker-gcr-demo:latest
