@@ -12,8 +12,8 @@ jobs:
       uses: docker/login-action@v1
       with:
        registry: ghcr.io
-       username: marinosefstathiou
-       password: NCRJust4now!
+       username: ${{ github.actor }}
+       password: ${{ secrets.GITHUB_TOKEN }}
     - name: Run build
       run: |
          docker build . --tag ghcr.io/marinosefstathiou/hello-docker-gcr-demo:latest
