@@ -10,6 +10,6 @@ jobs:
       uses: actions/checkout@v2
     - name: Run build
       run: |
-       docker build . --tag ghcr.io/mpapai04/hello-docker-gcr-demo:latest
-       docker run ghcr.io/mpapai04/hello-docker-gcr-demo:latest
-       docker push ghcr.io/mpapai04/hello-docker-gcr-demo:latest
+       docker build . --tag ghcr.io/marinosefstathiou/hello-docker-gcr-demo:latest
+       docker run ghcr.io/marinosefstathiou/hello-docker-gcr-demo:latest
+       docker push ghcr.io/marinosefstathiou/hello-docker-gcr-demo:latest
