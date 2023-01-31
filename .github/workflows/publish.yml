@@ -2,6 +2,9 @@ name: CI on push
 on:
   push:
     branches: [ master ]
+env:
+        DOCKER_MEMORY_LIMIT: 4G
+        DOCKER_CPU_LIMIT: 4
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -19,6 +22,3 @@ jobs:
          docker build . --tag ghcr.io/marinosefstathiou/publish-to-grc:latest
          docker run ghcr.io/marinosefstathiou/publish-to-grc:latest
          docker push ghcr.io/marinosefstathiou/publish-to-grc:latest
-      env:
-        DOCKER_MEMORY_LIMIT: 4G
-        DOCKER_CPU_LIMIT: 4
