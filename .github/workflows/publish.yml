@@ -26,4 +26,4 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
-          tags: mp185316/other
+          tags: mp185316/kubetestapi
