@@ -17,9 +17,14 @@ jobs:
        registry: ghcr.io
        username: ${{ github.actor }}
        password: ${{ secrets.GITHUB_TOKEN }}
-    - name: Run build
-      run: |
-         docker login ${{ github.actor }} ${{ secrets.GITHUB_TOKEN }}
-         docker build . --tag ghcr.io/marinosefstathiou/publish-to-grc:latest
-         docker run ghcr.io/marinosefstathiou/publish-to-grc:latest
-         docker push ghcr.io/marinosefstathiou/publish-to-grc:latest
+    -
+        name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+    -
+        name: Build and push
+        uses: docker/build-push-action@v3
+        with:
+          context: .
+          file: ./Dockerfile
+          push: true
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/clockbox:latest
