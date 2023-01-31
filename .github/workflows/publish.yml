@@ -3,13 +3,12 @@ name: Build and Push Docker Image
 on:
   push:
     branches:
-      - master
+      - main
+
 env:
   DOCKER_REGISTRY: ghcr.io
   IMAGE_NAME: my_image
   TAG: ${{ env.GITHUB_SHA }}
-  DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
-  DOCKER_USERNAME: ${{ env.GITHUB_ACTOR }}
 
 jobs:
   build:
@@ -20,6 +19,12 @@ jobs:
       uses: actions/checkout@v2
 
     - name: Build Docker Image
+      env:
+        DOCKER_REGISTRY: ${{ env.DOCKER_REGISTRY }}
+        IMAGE_NAME: ${{ env.IMAGE_NAME }}
+        TAG: ${{ env.TAG }}
+        DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+        DOCKER_USERNAME: ${{ env.GITHUB_ACTOR }}
       run: |
         docker build -t ${DOCKER_REGISTRY}/${IMAGE_NAME}:${TAG} .
         echo "${DOCKER_PASSWORD}" | docker login ${DOCKER_REGISTRY} -u "${DOCKER_USERNAME}" --password-stdin
