@@ -9,7 +9,7 @@ spec:
     server: 'https://kubernetes.default.svc'
   source:
     path: kubernetes
-    repoURL: 'https://gitlab.com/samples17/kubetestapi.git'
+    repoURL: 'https://github.com/marinosefstathiou/publish-to-grc.git'
     targetRevision: dev
   project: default
   syncPolicy:
