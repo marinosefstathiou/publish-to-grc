@@ -19,6 +19,7 @@ jobs:
        password: ${{ secrets.GITHUB_TOKEN }}
     - name: Run build
       run: |
+         docker login ${{ github.actor }} ${{ secrets.GITHUB_TOKEN }}
          docker build . --tag ghcr.io/marinosefstathiou/publish-to-grc:latest
          docker run ghcr.io/marinosefstathiou/publish-to-grc:latest
          docker push ghcr.io/marinosefstathiou/publish-to-grc:latest
