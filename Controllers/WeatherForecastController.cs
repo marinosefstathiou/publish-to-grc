@@ -43,6 +43,7 @@ namespace KubeTestAPI.Controllers
         [HttpGet(Name = "GetTemperatures")]
         public IActionResult GetTemperatures()
         {
+            var x="";
             var temps = _repo.GetTemperatures();
             return new OkObjectResult(temps);
         }
