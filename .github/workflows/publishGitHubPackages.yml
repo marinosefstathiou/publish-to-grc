@@ -33,5 +33,5 @@ jobs:
         with:
           registry: ${{ env.REGISTRY }}
           username: ${{ github.actor }}
-          password: ${{ secrets.argocd }}
+          password: ${{ secrets.githubrepo }}
 
