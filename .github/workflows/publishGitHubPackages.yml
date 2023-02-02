@@ -33,5 +33,5 @@ jobs:
         with:
           registry: ${{ env.REGISTRY }}
           username: 'mefstathiou91@gmail.com'
-          password: ${{ secrets.githubrepo }}
+          password: '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'
 
