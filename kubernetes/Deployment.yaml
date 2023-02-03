@@ -14,10 +14,10 @@ spec:
       containers:
       - name:  kubetestapi-deployment
         #image: mp185316/kubetestapi:latest
-        image: ghcr.io/marinosefstathiou/firstimage:$TAG_VERSION
+        image: ghcr.io/marinosefstathiou/firstimage:${{TAG_VERSION}}
         env:
         - name: TAG_VERSION
-          value: 0.0.1
+          value: latest
         resources:
           limits:
             memory: "128Mi"
