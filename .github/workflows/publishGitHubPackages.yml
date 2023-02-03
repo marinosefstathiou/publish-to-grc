@@ -11,6 +11,7 @@ env:
   IMAGE_NAME: ${{ github.repository }}
   VERSION: v1
   ACTIONS_ALLOW_UNSECURE_COMMANDS: "true"
+  VERSION: ""
 jobs:
   build-and-push-image:
     runs-on: ubuntu-latest
@@ -21,7 +22,24 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
+      - name: Get commit message
+        id: commit_message
+        run: echo "::set-output name=message::$(git log -1 --pretty=%B)"
+      - name: Extract version from commit message
+        id: version
+        run: |
+          if [[ "${{ steps.commit_message.outputs.message }}" =~ ^version:[[:space:]](.*) ]]; then
+          echo "::set-output name=version::${BASH_REMATCH[1]}"
+          else
+          echo "No version found in commit message."
+          exit 1
 
+      - name: Set version as environment variable
+        if: steps.version.outputs.version
+        run: echo "::set-env name=VERSION::${{ steps.version.outputs.version }}"
+
+      - name: Output version
+        run: echo "Extracted version: ${{ env.VERSION }}"
       - name: Log in to the Container registry
         uses: docker/login-action@v2
         with:
@@ -33,6 +51,6 @@ jobs:
         run: echo ::set-env name=IMAGE_VERSION::$(cat Version.txt)
       - name: Build Docker Image
         run: |
-          docker build . --tag ghcr.io/marinosefstathiou/firstimage:${{env.IMAGE_VERSION}}
-          docker push ghcr.io/marinosefstathiou/firstimage:${{env.IMAGE_VERSION}}
+          docker build . --tag ghcr.io/marinosefstathiou/firstimage:${{env.VERSION}}
+          docker push ghcr.io/marinosefstathiou/firstimage:${{env.VERSION}}
           
