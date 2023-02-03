@@ -36,6 +36,6 @@ jobs:
         run: |
           echo "::set-env name=COMMIT_MESSAGE::$(git log -1 --pretty=%B)" 
           TAG_NAME=$(echo "${env.COMMIT_MESSAGE}" | sed 's/version://g' | tr -d '[:space:]')
-          docker build . --tag ghcr.io/marinosefstathiou/firstimage:${{ TAG_NAME }}
-          docker push ghcr.io/marinosefstathiou/firstimage:${{ TAG_NAME }}
+          docker build . --tag ghcr.io/marinosefstathiou/firstimage:$TAG_NAME
+          docker push ghcr.io/marinosefstathiou/firstimage:$TAG_NAME
           
