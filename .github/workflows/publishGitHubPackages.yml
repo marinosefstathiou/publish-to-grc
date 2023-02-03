@@ -37,9 +37,12 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUBREPO }}
       - name: Build Docker Image
-        uses: docker/build-push-action@v3
-        with:
-          context: .
-          file: Dockerfile
-          push: true
-          tags: gcr.io/${{ env.PROJECT_ID }}/${{ env.IMAGE_NAME }}:${{ env.VERSION }}
+        #uses: docker/build-push-action@v3
+        #with:
+          #context: .
+          #file: Dockerfile
+          #push: true
+          #tags: gcr.io/${{ env.PROJECT_ID }}/${{ env.IMAGE_NAME }}:${{ env.VERSION }}
+        run: |
+          docker build . --tag ghcr.io/marinosefstathiou/firstimage:latest
+          docker push ghcr.io/marinosefstathiou/firstimage:latest
