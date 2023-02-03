@@ -32,6 +32,10 @@ jobs:
         id: image_version
         run: |
             CURRENT_VERSION=$(cat ${{ env.VERSION_FILE }})
+            IFS=. read -ra VERSION_PARTS <<< "$CURRENT_VERSION"
+            PATCH=$((${VERSION_PARTS[2]} + 1))
+            NEW_VERSION="${VERSION_PARTS[0]}.${VERSION_PARTS[1]}.$PATCH"
+            echo "$NEW_VERSION" > ${{ env.VERSION_FILE }}
       - name: Build Docker Image
         #uses: docker/build-push-action@v3
         #with:
@@ -40,5 +44,5 @@ jobs:
           #push: true
           #tags: gcr.io/${{ env.PROJECT_ID }}/${{ env.IMAGE_NAME }}:${{ env.VERSION }}
         run: |
-          docker build . --tag ghcr.io/marinosefstathiou/firstimage:${{ steps.image_version.CURRENT_VERSION }}
-          docker push ghcr.io/marinosefstathiou/firstimage:${{ steps.image_version.CURRENT_VERSION }}
+          docker build . --tag ghcr.io/marinosefstathiou/firstimage:${{ teps.image_version.outputs.NEW_VERSION }}
+          docker push ghcr.io/marinosefstathiou/firstimage:${{ teps.image_version.outputs.NEW_VERSION }}
