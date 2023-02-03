@@ -10,6 +10,7 @@ env:
   PROJECT_ID: marinosefstathiou/publish-to-grc
   IMAGE_NAME: ${{ github.repository }}
   VERSION: v1
+  ACTIONS_ALLOW_UNSECURE_COMMANDS: "true"
 
 jobs:
   build-and-push-image:
