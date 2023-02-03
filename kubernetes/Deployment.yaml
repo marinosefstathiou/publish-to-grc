@@ -14,7 +14,7 @@ spec:
       containers:
       - name:  kubetestapi-deployment
         #image: mp185316/kubetestapi:latest
-        image: marinosefstathiou/firstimage:latest
+        image: docker.pkg.github.com/marinosefstathiou/publish-to-grc/firstimage:latest
         resources:
           limits:
             memory: "128Mi"
