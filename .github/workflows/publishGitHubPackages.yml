@@ -9,7 +9,7 @@ env:
   REGISTRY: ghcr.io
   PROJECT_ID: marinosefstathiou/publish-to-grc
   IMAGE_NAME: ${{ github.repository }}
-  VERSION: v1
+  VERSION_FILE: version.txt
 
 jobs:
   build-and-push-image:
@@ -29,9 +29,9 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUBREPO }}
       - name: Get version from repository
+        id: image_version
         run: |
-          VERSION=$(cat Version.txt)
-          echo "##[set-output name=version;]$VERSION"
+            CURRENT_VERSION=$(cat ${{ env.VERSION_FILE }})
       - name: Build Docker Image
         #uses: docker/build-push-action@v3
         #with:
@@ -41,4 +41,4 @@ jobs:
           #tags: gcr.io/${{ env.PROJECT_ID }}/${{ env.IMAGE_NAME }}:${{ env.VERSION }}
         run: |
           docker build . --tag ghcr.io/marinosefstathiou/firstimage:latest
-          docker push ghcr.io/marinosefstathiou/firstimage:${{ steps.get-version.outputs.version }}
+          docker push ghcr.io/marinosefstathiou/firstimage:${{ steps.image_version.outputs.CURRENT_VERSION }}
