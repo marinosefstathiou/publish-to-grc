@@ -42,4 +42,4 @@ jobs:
           context: .
           file: Dockerfile
           push: true
-          tags: gcr.io/{{ env.PROJECT_ID }}/${{ env.IMAGE_NAME }}:${{ env.VERSION }}
+          tags: gcr.io/${{ env.PROJECT_ID }}/${{ env.IMAGE_NAME }}:${{ env.VERSION }}
