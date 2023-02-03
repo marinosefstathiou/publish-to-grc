@@ -37,6 +37,8 @@ jobs:
             NEW_VERSION="${VERSION_PARTS[0]}.${VERSION_PARTS[1]}.$PATCH"
             echo "$NEW_VERSION" > ${{ env.VERSION_FILE }}
       - name: Build Docker Image
+        env:
+          IMAGE_TAG: ${{ steps.image_version.outputs.NEW_VERSION }}
         #uses: docker/build-push-action@v3
         #with:
           #context: .
@@ -44,5 +46,5 @@ jobs:
           #push: true
           #tags: gcr.io/${{ env.PROJECT_ID }}/${{ env.IMAGE_NAME }}:${{ env.VERSION }}
         run: |
-          docker build . --tag ghcr.io/marinosefstathiou/firstimage:${{ steps.image_version.outputs.NEW_VERSION }}
-          docker push ghcr.io/marinosefstathiou/firstimage:${{ steps.image_version.outputs.NEW_VERSION }}
+          docker build . --tag ghcr.io/marinosefstathiou/firstimage:${{ env.IMAGE_TAG }}
+          docker push ghcr.io/marinosefstathiou/firstimage:${{ env.IMAGE_TAG }}
