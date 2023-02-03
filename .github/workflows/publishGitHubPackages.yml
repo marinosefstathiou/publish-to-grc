@@ -16,6 +16,7 @@ on:
 env:
   REGISTRY: ghcr.io
   IMAGE_NAME: ${{ github.repository }}
+  VERSION: v1
 
 jobs:
   build-and-push-image:
@@ -40,5 +41,4 @@ jobs:
           context: .
           file: Dockerfile
           push: true
-          tags: ${{ steps.meta.outputs.tags }}
-          labels: ${{ steps.meta.outputs.labels }}
+          tags: gcr.io/${{ env.IMAGE_NAME }}/${{ env.IMAGE_NAME }}:${{ env.VERSION }}
