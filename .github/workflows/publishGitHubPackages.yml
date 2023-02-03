@@ -30,7 +30,7 @@ jobs:
           password: ${{ secrets.GITHUBREPO }}
       - name: Get version from repository
         run: |
-          VERSION=$(cat VERSION.txt)
+          VERSION=$(cat Version.txt)
           echo "##[set-output name=version;]$VERSION"
       - name: Build Docker Image
         #uses: docker/build-push-action@v3
