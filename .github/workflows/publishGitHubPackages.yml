@@ -1,5 +1,5 @@
 
-name: Create and publish a Docker image to Github Packages Versioning 
+name: Create and publish a Docker image to Github Packages V 
 
 on:
   push:
