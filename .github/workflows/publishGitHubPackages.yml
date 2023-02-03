@@ -40,5 +40,5 @@ jobs:
           #push: true
           #tags: gcr.io/${{ env.PROJECT_ID }}/${{ env.IMAGE_NAME }}:${{ env.VERSION }}
         run: |
-          docker build . --tag ghcr.io/marinosefstathiou/firstimage:${{ steps.image_version.outputs.CURRENT_VERSION }}
-          docker push ghcr.io/marinosefstathiou/firstimage:${{ steps.image_version.outputs.CURRENT_VERSION }}
+          docker build . --tag ghcr.io/marinosefstathiou/firstimage:${{ steps.image_version.CURRENT_VERSION }}
+          docker push ghcr.io/marinosefstathiou/firstimage:${{ steps.image_version.CURRENT_VERSION }}
