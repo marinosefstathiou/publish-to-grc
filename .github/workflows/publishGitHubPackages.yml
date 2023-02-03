@@ -41,4 +41,4 @@ jobs:
           context: .
           file: Dockerfile
           push: true
-          tags: gcr.io/publish-to-grc/${{ env.IMAGE_NAME }}:${{ env.VERSION }}
+          tags: gcr.io/marinosefstathiou/publish-to-grc/${{ env.IMAGE_NAME }}:${{ env.VERSION }}
