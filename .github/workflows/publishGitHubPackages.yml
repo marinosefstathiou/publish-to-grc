@@ -46,9 +46,11 @@ jobs:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUBREPO }}
+          
       - name: Set image version
         id: set-version
         run: echo ::set-env name=IMAGE_VERSION::$(cat Version.txt)
+        
       - name: Build Docker Image
         run: |
           docker build . --tag ghcr.io/marinosefstathiou/firstimage:${{env.VERSION}}
