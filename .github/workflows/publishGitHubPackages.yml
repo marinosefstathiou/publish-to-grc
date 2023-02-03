@@ -36,6 +36,7 @@ jobs:
           echo "Error: Version not found in the commit message"
           exit 1
           fi
+          echo "Version: $VERSION"
           echo Version=$VERSION" >> $GITHUB_ENV
           
       - name: Log in to the Container registry
