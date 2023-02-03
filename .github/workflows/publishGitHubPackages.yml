@@ -40,4 +40,6 @@ jobs:
           context: .
           file: Dockerfile
           push: true
-          tags: gcr.io/<your_project_id>/<image_name>:<tag>
+          #tags: gcr.io/<your_project_id>/<image_name>:<tag>
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
