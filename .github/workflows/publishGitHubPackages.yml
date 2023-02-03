@@ -30,7 +30,7 @@ jobs:
       - name: Extract version from commit message
         id: version
         run: |
-          if [[ "${{ steps.commit_message.outputs.message }}" =~ ^version:[[:space:]](.*) ]]; then
+          if: env.COMMIT_MESSAGE.startsWith('version:') then
           echo "::set-output name=version::${BASH_REMATCH[1]}"
           else
           echo "No version found in commit message."
