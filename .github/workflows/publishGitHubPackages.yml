@@ -11,7 +11,7 @@ env:
   IMAGE_NAME: ${{ github.repository }}
   VERSION: v1
   ACTIONS_ALLOW_UNSECURE_COMMANDS: "true"
-
+  GIT_TAG: ${{ env.TAG_NAME }}
 jobs:
   build-and-push-image:
     runs-on: ubuntu-latest
