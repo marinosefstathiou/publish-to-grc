@@ -4,7 +4,6 @@ name: Create and publish a Docker image to Github Packages V
 on:
   push:
     branches: ['master']
-    
 env:
   REGISTRY: ghcr.io
   PROJECT_ID: marinosefstathiou/publish-to-grc
