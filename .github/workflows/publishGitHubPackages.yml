@@ -9,7 +9,7 @@ env:
   REGISTRY: ghcr.io
   PROJECT_ID: marinosefstathiou/publish-to-grc
   IMAGE_NAME: ${{ github.repository }}
-  VERSION_FILE: version.txt
+  VERSION_FILE: Version.txt
 
 jobs:
   build-and-push-image:
