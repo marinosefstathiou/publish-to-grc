@@ -15,6 +15,7 @@ on:
 
 env:
   REGISTRY: ghcr.io
+  PROJECT_ID: marinosefstathiou/publish-to-grc
   IMAGE_NAME: ${{ github.repository }}
   VERSION: v1
 
@@ -41,4 +42,4 @@ jobs:
           context: .
           file: Dockerfile
           push: true
-          tags: gcr.io/marinosefstathiou/publish-to-grc/${{ env.IMAGE_NAME }}:${{ env.VERSION }}
+          tags: gcr.io/{{ env.PROJECT_ID }}/${{ env.IMAGE_NAME }}:${{ env.VERSION }}
