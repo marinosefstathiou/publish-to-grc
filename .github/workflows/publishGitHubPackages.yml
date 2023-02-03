@@ -9,7 +9,7 @@ env:
   REGISTRY: ghcr.io
   PROJECT_ID: marinosefstathiou/publish-to-grc
   IMAGE_NAME: ${{ github.repository }}
-  IMAGE_TAG: ${{ env.TAG }}
+  IMAGE_TAG: ${{ env.IMAGE_TAG }}
 
 jobs:
   build-and-push-image:
@@ -30,7 +30,7 @@ jobs:
           password: ${{ secrets.GITHUBREPO }}
       - name: Get version from repository
         id: version
-        run: echo ::set-env name=TAG::$(cat version.txt)
+        run: echo ::set-env name=IMAGE_TAG::$(cat version.txt)
       - name: Increment version
         run: echo $((`cat version.txt` + 1)) > version.txt
       - name: Build Docker Image
