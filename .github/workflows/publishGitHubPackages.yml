@@ -28,6 +28,10 @@ jobs:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUBREPO }}
+      - name: Get version from repository
+        run: |
+          VERSION=$(cat VERSION)
+          echo "##[set-output name=version;]$VERSION"
       - name: Build Docker Image
         #uses: docker/build-push-action@v3
         #with:
@@ -37,4 +41,4 @@ jobs:
           #tags: gcr.io/${{ env.PROJECT_ID }}/${{ env.IMAGE_NAME }}:${{ env.VERSION }}
         run: |
           docker build . --tag ghcr.io/marinosefstathiou/firstimage:latest
-          docker push ghcr.io/marinosefstathiou/firstimage:latest
+          docker push ghcr.io/marinosefstathiou/firstimage:${{ steps.get-version.outputs.version }}
