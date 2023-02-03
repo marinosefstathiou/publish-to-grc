@@ -9,7 +9,7 @@ env:
   REGISTRY: ghcr.io
   PROJECT_ID: marinosefstathiou/publish-to-grc
   IMAGE_NAME: ${{ github.repository }}
-  VERSION_FILE: Version.txt
+  IMAGE_TAG: ${{ env.TAG }}
 
 jobs:
   build-and-push-image:
@@ -29,22 +29,11 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUBREPO }}
       - name: Get version from repository
-        id: image_version
-        run: |
-            CURRENT_VERSION=$(cat ${{ env.VERSION_FILE }})
-            IFS=. read -ra VERSION_PARTS <<< "$CURRENT_VERSION"
-            PATCH=$((${VERSION_PARTS[2]} + 1))
-            NEW_VERSION="${VERSION_PARTS[0]}.${VERSION_PARTS[1]}.$PATCH"
-            echo "$NEW_VERSION" > ${{ env.VERSION_FILE }}
+        id: version
+        run: echo ::set-env name=TAG::$(cat version.txt)
+      - name: Increment version
+        run: echo $((`cat version.txt` + 1)) > version.txt
       - name: Build Docker Image
-        env:
-          IMAGE_TAG: ${{ steps.image_version.outputs.NEW_VERSION }}
-        #uses: docker/build-push-action@v3
-        #with:
-          #context: .
-          #file: Dockerfile
-          #push: true
-          #tags: gcr.io/${{ env.PROJECT_ID }}/${{ env.IMAGE_NAME }}:${{ env.VERSION }}
         run: |
-          docker build . --tag ghcr.io/marinosefstathiou/firstimage:${{ env.IMAGE_TAG }}
-          docker push ghcr.io/marinosefstathiou/firstimage:${{ env.IMAGE_TAG }}
+            docker build . --tag ghcr.io/marinosefstathiou/firstimage:${{ env.TAG }} .
+            docker push ghcr.io/marinosefstathiou/firstimage:${{ env.TAG }}
