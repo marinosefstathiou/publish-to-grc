@@ -28,12 +28,7 @@ jobs:
       - name: Extract version from commit message
         id: version
         run: |
-          if: env.COMMIT_MESSAGE.startsWith('version:') then
           echo "::set-output name=version::${BASH_REMATCH[1]}"
-          else
-          echo "No version found in commit message."
-          exit 1
-
       - name: Set version as environment variable
         if: steps.version.outputs.version
         run: echo "::set-env name=COMMIT_MESSAGE::$(git log -1 --pretty=%B)"
