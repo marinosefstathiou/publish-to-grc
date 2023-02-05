@@ -28,7 +28,7 @@ jobs:
 
           # Extract the version from the commit message
           # assuming the version is in the format v1.0.0
-          REGEX="v[0-9]+\.[0-9]+\.[0-9]+"
+          REGEX="version:[0-9]+\.[0-9]+\.[0-9]+"
           if $COMMIT_MESSAGE.startsWith('version:') then
           #if [[ $COMMIT_MESSAGE =~ $REGEX ]]; then
           export VERSION="${BASH_REMATCH[0]}"
