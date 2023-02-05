@@ -56,9 +56,9 @@ jobs:
       
       - name: Replace image
         run: |
-          sed -i 's|existing/image:tag|new/image:tag|g' deployment.yml
+          sed -i 's|existing/image:tag|new/image:tag|g' kubernetes/deployment.yaml
         
       - name: Commit changes
-        uses: actions/git-actions@v1
+        uses: actions/git-actions@v3
         with:
           args: commit -a -m "Update image"
