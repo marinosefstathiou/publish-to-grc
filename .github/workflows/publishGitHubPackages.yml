@@ -33,8 +33,7 @@ jobs:
           if [[ $COMMIT_MESSAGE =~ $REGEX ]]; then
           export VERSION="${BASH_REMATCH[0]}"
           else
-          #echo "Error: Version not found in the commit message"
-          exit 1
+          echo "Error: Version not found in the commit message continuing to the next version"
           fi
           echo "Version: $VERSION"
           echo ::set-env name=MY_VERSION::$VERSION
