@@ -58,7 +58,7 @@ jobs:
         run: |
           sed -i 's|existing/image:tag|new/image:tag|g' ../../deployment.yaml || echo "Error: Cannot change tag on deployment file"
         
-      - name: Commit changes
-        uses: zwaldowski/git-commit-action@v1
-        with:
-          args: commit -a -m "Update image" 
+      #- name: Commit changes
+      #  uses: zwaldowski/git-commit-action@v1
+      #  with:
+      #    args: commit -a -m "Update image" 
