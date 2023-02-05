@@ -53,3 +53,12 @@ jobs:
         run: |
           docker build . --tag ghcr.io/marinosefstathiou/firstimage:${MY_VERSION} || echo "Error: Version not found in the commit message docker build will not execute"
           docker push ghcr.io/marinosefstathiou/firstimage:${MY_VERSION} || echo "Error: Version not found in the commit message docker push will not execute"
+      
+      - name: Replace image
+        run: |
+          sed -i 's|existing/image:tag|new/image:tag|g' deployment.yml
+        
+      - name: Commit changes
+        uses: actions/git-actions@v1
+        with:
+          args: commit -a -m "Update image"
