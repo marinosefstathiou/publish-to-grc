@@ -28,12 +28,12 @@ jobs:
 
           # Extract the version from the commit message
           # assuming the version is in the format v1.0.0
-          REGEX="version:[0-9]+\.[0-9]+\.[0-9]+"
-          if $COMMIT_MESSAGE.startsWith('version:') then
-          #if [[ $COMMIT_MESSAGE =~ $REGEX ]]; then
+          REGEX="v[0-9]+\.[0-9]+\.[0-9]+"
+          #if $COMMIT_MESSAGE.startsWith('version:') then
+          if [[ $COMMIT_MESSAGE =~ $REGEX ]]; then
           export VERSION="${BASH_REMATCH[0]}"
           else
-          echo "Error: Version not found in the commit message"
+          #echo "Error: Version not found in the commit message"
           exit 1
           fi
           echo "Version: $VERSION"
