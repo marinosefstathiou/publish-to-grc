@@ -59,6 +59,6 @@ jobs:
           sed -i 's|existing/image:tag|new/image:tag|g' kubernetes/deployment.yaml
         
       - name: Commit changes
-        uses: git-commit-action@v1
+        uses: ${{ github.actor }}/git-commit-action@v1
         with:
           args: commit -a -m "Update image"
