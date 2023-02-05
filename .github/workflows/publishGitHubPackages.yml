@@ -48,6 +48,7 @@ jobs:
       - name: Set image version
         id: set-version
         run: echo ::set-env name=IMAGE_VERSION::$(cat Version.txt) 
+        
       - name: Build Docker Image
         run: |
           docker build . --tag ghcr.io/marinosefstathiou/firstimage:${MY_VERSION} || echo "Error: Version not found in the commit message docker build will not execute"
