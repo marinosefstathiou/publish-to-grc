@@ -60,7 +60,6 @@ jobs:
           ls -la
           #cd kubernetes
           sed -i "s/firstimage:.*/firstimage:${MY_VERSION}/" deployment.yaml
-        
       - name: Commit and push changes
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
