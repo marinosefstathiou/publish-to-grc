@@ -63,7 +63,7 @@ jobs:
           #cd kubernetes
           sed -i "s/firstimage:.*/firstimage:${MY_VERSION}/" deployment.yaml
       - name: Commit and push changes
-        if: ${MY_VERSION} != '' 
+        if: env.MY_VERSION.startsWith('v')
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
           token: ${{ secrets.GITHUBREPO }}
