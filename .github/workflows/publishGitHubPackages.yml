@@ -56,7 +56,8 @@ jobs:
       
       - name: Replace image
         run: |
-          sed -i 's|existing/image:tag|new/image:tag|g' ../../kubernetes/Deployment.yaml || echo "Error: Cannot change tag on deployment file"
+          cd ../../kubernetes/
+          sed -i 's|existing/image:tag|new/image:tag|g' Deployment.yaml || echo "Error: Cannot change tag on deployment file"
         
       #- name: Commit and push changes
       #  uses: stefanzweifel/git-auto-commit-action@v4
