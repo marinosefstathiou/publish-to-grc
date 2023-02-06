@@ -59,7 +59,7 @@ jobs:
           echo "Current directory: $(pwd)"
           ls -la
           #cd ../../../../kubernetes
-          sed -i 's|existing/image:tag|new/image:tag|g' deployment.yaml || echo "Error: Cannot change tag on deployment file"
+          sed -i "s/firstimage:.*/firstimage: ${MY_VERSION}/" deployment.yaml || echo "Error: Cannot change tag on deployment file"
         
       #- name: Commit and push changes
       #  uses: stefanzweifel/git-auto-commit-action@v4
