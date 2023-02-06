@@ -1,62 +1,29 @@
-name: Create and publish a Docker image to Github Packages if version is exist in commit message
-
-on:
-  push:
-    branches: ['master']
-env:
-  REGISTRY: ghcr.io
-  PROJECT_ID: marinosefstathiou/publish-to-grc
-  IMAGE_NAME: ${{ github.repository }}
-  ACTIONS_ALLOW_UNSECURE_COMMANDS: "true"
-
-jobs:
-  build-and-push-image:
-    runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      packages: write
-
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
-        
-      - name: Extract version from commit message
-        run: |
-          # Get the latest commit message
-          COMMIT_MESSAGE=$(git log -1 --pretty=%B)
-          # Extract the version from the commit message
-          # assuming the version is in the format v1.0.0
-          REGEX="v[0-9]+\.[0-9]+\.[0-9]+"
-          #if $COMMIT_MESSAGE.startsWith('version:') then
-          if [[ $COMMIT_MESSAGE =~ $REGEX ]]; then
-          export VERSION="${BASH_REMATCH[0]}"
-          else
-          echo "Error: Version not found in the commit message continuing to the next version"
-          fi
-          echo "Version: $VERSION"
-          echo ::set-env name=MY_VERSION::$VERSION
-          
-      - name: Log in to the Container registry
-        uses: docker/login-action@v2
-        with:
-          registry: ghcr.io
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUBREPO }}
-          
-      - name: Set image version
-        id: set-version
-        run: echo ::set-env name=IMAGE_VERSION::$(cat Version.txt) 
-        
-      - name: Build Docker Image
-        run: |
-          docker build . --tag ghcr.io/marinosefstathiou/firstimage:${MY_VERSION} || echo "Error: Version not found in the commit message docker build will not execute"
-          docker push ghcr.io/marinosefstathiou/firstimage:${MY_VERSION} || echo "Error: Version not found in the commit message docker push will not execute"
-      
-      - name: Replace image
-        run: |
-          sed -i 's|existing/image:tag|new/image:tag|g' ../../Deployment.yaml
-        
-      - name: Commit changes
-        uses: zwaldowski/git-commit-action@v1
-        with:
-          args: commit -a -m "Update image"
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kubetestapi-deployment
+spec:
+  selector:
+    matchLabels:
+      app: kubetestapi-deployment
+  template:
+    metadata:
+      labels:
+        app:  kubetestapi-deployment
+    spec:
+      containers:
+      - name:  kubetestapi-deployment
+        env:
+        - name: TAG_VERSION
+          value: 0.0.1
+        #image: mp185316/kubetestapi:latest
+        image: ghcr.io/marinosefstathiou/firstimage:0.0.1
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 80
+      imagePullSecrets:
+        #- name: regcred
+        - name: githubsecret
