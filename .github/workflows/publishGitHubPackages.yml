@@ -54,11 +54,13 @@ jobs:
           docker build . --tag ghcr.io/marinosefstathiou/firstimage:${MY_VERSION} || echo "Error: Version not found in the commit message docker build will not execute"
           docker push ghcr.io/marinosefstathiou/firstimage:${MY_VERSION} || echo "Error: Version not found in the commit message docker push will not execute"
       
-      #- name: Replace image
-      #  run: |
-      #    sed -i 's|existing/image:tag|new/image:tag|g' ../../deployment.yaml || echo "Error: Cannot change tag on deployment file"
+      - name: Replace image
+        run: |
+          sed -i 's|existing/image:tag|new/image:tag|g' ../../deployment.yaml || echo "Error: Cannot change tag on deployment file"
         
-      #- name: Commit changes
-      #  uses: zwaldowski/git-commit-action@v1
-      #  with:
-      #    args: commit -a -m "Update image" 
+      - name: Commit and push changes
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: "Update deployment YAML with new version"
+          branch: master
+          add: "deployment.yml" 
