@@ -57,7 +57,8 @@ jobs:
       - name: Replace image
         run: |
           echo "Current directory: $(pwd)"
-          cd ../../../../kubernetes
+          ls -la
+          #cd ../../../../kubernetes
           sed -i 's|existing/image:tag|new/image:tag|g' Deployment.yaml || echo "Error: Cannot change tag on deployment file"
         
       #- name: Commit and push changes
