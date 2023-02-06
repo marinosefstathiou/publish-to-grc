@@ -61,9 +61,9 @@ jobs:
           #cd ../../../../kubernetes
           sed -i "s/firstimage:.*/firstimage: ${MY_VERSION}/" deployment.yaml || echo "Error: Cannot change tag on deployment file"
         
-      #- name: Commit and push changes
-      #  uses: stefanzweifel/git-auto-commit-action@v4
-      #  with:
-      #    commit_message: "Update deployment YAML with new version"
-      #    branch: master
-      #    add: "Deployment.yaml" 
+      - name: Commit and push changes
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: "Update deployment YAML with new version"
+          branch: master
+          add: "deployment.yaml" 
