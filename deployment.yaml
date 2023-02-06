@@ -17,7 +17,7 @@ spec:
         - name: TAG_VERSION
           value: 0.0.1
         #image: mp185316/kubetestapi:latest
-        image: ghcr.io/marinosefstathiou/firstimage:v9.9.9
+        image: ghcr.io/marinosefstathiou/firstimage:
         resources:
           limits:
             memory: "128Mi"
