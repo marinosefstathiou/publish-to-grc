@@ -38,7 +38,7 @@ jobs:
           echo "Error: Version not found in the commit message continuing to the next version"
           fi
           echo "Version: $VERSION"
-          echo ::set-env name=MY_VERSION::$VERSION
+          echo ::set-env name=NEW_VERSION::$VERSION
           
       - name: Log in to the Container registry
         uses: docker/login-action@v2
@@ -53,17 +53,17 @@ jobs:
         
       - name: Build Docker Image
         run: |
-          docker build . --tag ghcr.io/marinosefstathiou/firstimage:${MY_VERSION} || echo "Error: Version not found in the commit message docker build will not execute"
-          docker push ghcr.io/marinosefstathiou/firstimage:${MY_VERSION} || echo "Error: Version not found in the commit message docker push will not execute"
+          docker build . --tag ghcr.io/marinosefstathiou/firstimage:${NEW_VERSION} || echo "Error: Version not found in the commit message docker build will not execute"
+          docker push ghcr.io/marinosefstathiou/firstimage:${NEW_VERSION} || echo "Error: Version not found in the commit message docker push will not execute"
       
       - name: Replace image
         run: |
           echo "Current directory: $(pwd)"
           ls -la
           cd kubernetes
-          sed -i "s/firstimage:.*/firstimage:${MY_VERSION}/" Deployment.yaml
+          sed -i "s/firstimage:.*/firstimage:${NEW_VERSION}/" Deployment.yaml
       - name: Commit and push changes
-        if: env.MY_VERSION != ''
+        if: env.NEW_VERSION != ''
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
           token: ${{ secrets.GITHUBREPO }}
