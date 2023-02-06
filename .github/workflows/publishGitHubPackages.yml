@@ -60,8 +60,8 @@ jobs:
         run: |
           echo "Current directory: $(pwd)"
           ls -la
-          #cd kubernetes
-          sed -i "s/firstimage:.*/firstimage:${MY_VERSION}/" deployment.yaml
+          cd kubernetes
+          sed -i "s/firstimage:.*/firstimage:${MY_VERSION}/" Deployment.yaml
       - name: Commit and push changes
         if: env.MY_VERSION != ''
         uses: stefanzweifel/git-auto-commit-action@v4
