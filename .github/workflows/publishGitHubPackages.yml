@@ -63,8 +63,9 @@ jobs:
           #cd kubernetes
           sed -i "s/firstimage:.*/firstimage:${MY_VERSION}/" deployment.yaml
       - name: Commit and push changes
+        if: "$VARIABLE != ''"
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
           token: ${{ secrets.GITHUBREPO }}
-          commit_message: "Update deployment YAML with new version ${MY_VERSION}"
+          commit_message: "Update deployment YAML with new version"
           branch: master
