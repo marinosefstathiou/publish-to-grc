@@ -61,10 +61,12 @@ jobs:
       
       - name: Replace image
         run: |
+          if: env.NEW_VERSION != ''
           echo "Current directory: $(pwd)"
           ls -la
           cd kubernetes
-          sed -i "s/firstimage:.*/firstimage:${NEW_VERSION}/" Deployment.yaml || echo "Error: Version not found in the commit message replacement of the image will not execute"
+          sed -i "s/firstimage:.*/firstimage:${NEW_VERSION}/" Deployment.yaml
+          else: echo "Error: Version not found in the commit message replacement of the image will not execute"
       - name: Commit and push changes
         if: env.NEW_VERSION != ''
         uses: stefanzweifel/git-auto-commit-action@v4
