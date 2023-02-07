@@ -10,7 +10,7 @@ spec:
   source:
     path: kubernetes
     repoURL: 'https://github.com/marinosefstathiou/publish-to-grc.git'
-    targetRevision: dev
+    targetRevision: master
   project: default
   syncPolicy:
     automated: null
