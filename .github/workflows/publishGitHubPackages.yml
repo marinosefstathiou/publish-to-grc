@@ -2,6 +2,9 @@
 name: Create and publish a Docker image to Github Packages if version is exist in commit message
 
 on:
+  # runs every day at 20:00 PM UTC
+  #schedule:
+  #  - cron: "0 20 * * *"
   push:
     branches: ['master']
 env:
@@ -34,7 +37,7 @@ jobs:
           if [[ $COMMIT_MESSAGE =~ $REGEX ]]; then
           export VERSION="${BASH_REMATCH[0]}"
           else
-          echo "Error: Version not found in the commit message continuing to the next version"
+          echo "Error: Version not found in the commit message continuing to the next step"
           fi
           echo "Version: $VERSION"
           echo ::set-env name=NEW_VERSION::$VERSION
@@ -45,12 +48,13 @@ jobs:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUBREPO }}
-          
-      - name: Set image version
-        id: set-version
-        run: echo ::set-env name=IMAGE_VERSION::$(cat Version.txt) 
+      
+      #takes version from a file
+      #- name: Set image version from a file
+      #  id: set-version
+      #  run: echo ::set-env name=IMAGE_VERSION::$(cat Version.txt) 
         
-      - name: Build Docker Image
+      - name: Build Docker Image if version exist
         run: |
           docker build . --tag ghcr.io/marinosefstathiou/firstimage:${NEW_VERSION} || echo "Error: Version not found in the commit message docker build will not execute"
           docker push ghcr.io/marinosefstathiou/firstimage:${NEW_VERSION} || echo "Error: Version not found in the commit message docker push will not execute"
@@ -60,7 +64,7 @@ jobs:
           echo "Current directory: $(pwd)"
           ls -la
           cd kubernetes
-          sed -i "s/firstimage:.*/firstimage:${NEW_VERSION}/" Deployment.yaml
+          sed -i "s/firstimage:.*/firstimage:${NEW_VERSION}/" Deployment.yaml || echo "Error: Version not found in the commit message replacement of the image will not execute"
       - name: Commit and push changes
         if: env.NEW_VERSION != ''
         uses: stefanzweifel/git-auto-commit-action@v4
