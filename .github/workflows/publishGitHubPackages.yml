@@ -7,7 +7,6 @@ on:
 env:
   REGISTRY: ghcr.io
   PROJECT_ID: marinosefstathiou/publish-to-grc
-  IMAGE_NAME: ${{ github.repository }}
   ACTIONS_ALLOW_UNSECURE_COMMANDS: "true"
 
 jobs:
