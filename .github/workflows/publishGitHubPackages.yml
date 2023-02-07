@@ -61,7 +61,6 @@ jobs:
       
       - name: Replace image
         run: |
-          if: env.NEW_VERSION != ''
           echo "Current directory: $(pwd)"
           ls -la
           cd kubernetes
