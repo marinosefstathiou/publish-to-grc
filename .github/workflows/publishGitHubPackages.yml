@@ -65,8 +65,6 @@ jobs:
           ls -la
           cd kubernetes
           sed -i "s/firstimage:.*/firstimage:${NEW_VERSION}/" Deployment.yaml
-          #else 
-          # echo "Version not found in the commit message docker replacement of the image will not execute"
           
       - name: Commit and push changes
         if: env.NEW_VERSION != ''
