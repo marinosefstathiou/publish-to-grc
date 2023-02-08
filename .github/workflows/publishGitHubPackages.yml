@@ -80,12 +80,6 @@ jobs:
         uses: azure/setup-kubectl@v1
         with:
           kubeconfig: ${{ env.KUBECONFIG_CONTENT }}
-
-      - name: Apply kubernetes manifests
-        uses: argoproj/argo-cd@v3
-        with:
-          command: apply
-          manifests_dir: kubernetes
           
       - name: Run database migrations
         run: |
