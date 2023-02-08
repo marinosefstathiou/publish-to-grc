@@ -18,6 +18,9 @@ COPY . .
 WORKDIR "/src/."
 RUN dotnet build "KubeTestAPI.csproj" -c Release -o /app/build
 
+# run migrations
+RUN dotnet ef database update
+
 FROM build AS publish
 RUN dotnet publish "KubeTestAPI.csproj" -c Release -o /app/publish /p:UseAppHost=false
 
