@@ -19,10 +19,8 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v2
 
-    - name: Set up PostgreSQL client
-      uses: shivammathur/setup-postgresql@v2
-      with:
-        version: '12'
+    - name: Install PostgreSQL client
+      run: sudo apt-get update && sudo apt-get install -y postgresql-client
 
     - name: Connect to PostgreSQL database
       run: |
