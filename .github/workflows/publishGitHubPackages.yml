@@ -12,7 +12,8 @@ env:
   REGISTRY: ghcr.io
   PROJECT_ID: marinosefstathiou/publish-to-grc
   ACTIONS_ALLOW_UNSECURE_COMMANDS: "true"
-
+  KUBECONFIG_CONTENT: ${{ secrets.KUBECONFIG }}
+  
 jobs:
   build-and-push-image:
     runs-on: ubuntu-latest
@@ -74,3 +75,18 @@ jobs:
           token: ${{ secrets.GITHUBREPO }}
           commit_message: "Update deployment YAML with new version"
           branch: master
+          
+      - name: Configure kubectl
+        uses: azure/setup-kubectl@v1
+        with:
+          kubeconfig: ${{ env.KUBECONFIG_CONTENT }}
+
+      - name: Apply kubernetes manifests
+        uses: argoproj/argo-cd@v2
+        with:
+          command: apply
+          manifests_dir: kubernetes
+          
+      - name: Run database migrations
+        run: |
+          kubectl exec -it $(kubectl get pods -l app=kubetestapi-deployment -o jsonpath='{.items[0].metadata.name}') -- /bin/bash -c "dotnet ef database update --context WeatherDBContext"
