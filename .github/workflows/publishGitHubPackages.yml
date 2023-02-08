@@ -82,7 +82,7 @@ jobs:
           kubeconfig: ${{ env.KUBECONFIG_CONTENT }}
 
       - name: Apply kubernetes manifests
-        uses: argoproj/argo-cd@v2
+        uses: argoproj/argo-cd@v3
         with:
           command: apply
           manifests_dir: kubernetes
