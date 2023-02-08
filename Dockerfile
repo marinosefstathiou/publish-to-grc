@@ -6,7 +6,7 @@ EXPOSE 5150
 ENV ASPNETCORE_URLS=http://+:5150
 
 # Install the .NET SDK
-RUN apt-get update && apt-get install -y dotnet-sdk-6.0.100
+#RUN apt-get update && apt-get install -y dotnet-sdk-6.0.100
 
 # Creates a non-root user with an explicit UID and adds permission to access the /app folder
 # For more info, please refer to https://aka.ms/vscode-docker-dotnet-configure-containers
