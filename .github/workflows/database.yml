@@ -1,0 +1,29 @@
+name: Connect to PostgreSQL Database
+
+on:
+  push:
+    branches:
+      - master
+env:
+  POSTGRES_HOST: 153.70.79.161
+  POSTGRES_PORT: 5432
+  POSTGRES_DB: postgres
+  POSTGRES_USER: hippo
+  POSTGRES_PASSWORD: 2k(3Ty}w:+_|0p6]8@IGl=p[
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up PostgreSQL client
+      uses: shivammathur/setup-postgresql@v2
+      with:
+        version: '12'
+
+    - name: Connect to PostgreSQL database
+      run: |
+        psql "host=$POSTGRES_HOST dbname=$POSTGRES_DB user=$POSTGRES_USER password=$POSTGRES_PASSWORD" -c 'SELECT * FROM table_name'
