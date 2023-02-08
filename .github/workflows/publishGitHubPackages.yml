@@ -76,11 +76,11 @@ jobs:
           commit_message: "Update deployment YAML with new version"
           branch: master
           
-      - name: Configure kubectl
-        uses: azure/setup-kubectl@v1
-        with:
-          kubeconfig: ${{ env.KUBECONFIG_CONTENT }}
+      #- name: Configure kubectl
+      #  uses: azure/setup-kubectl@v1
+      #  with:
+      #    kubeconfig: ${{ env.KUBECONFIG_CONTENT }}
           
-      - name: Run database migrations
-        run: |
-          kubectl exec -it $(kubectl get pods -l app=kubetestapi-deployment -o jsonpath='{.items[0].metadata.name}') -- /bin/bash -c "dotnet ef database update --context WeatherDBContext"
+      #- name: Run database migrations
+      #  run: |
+      #    kubectl exec -it $(kubectl get pods -l app=kubetestapi-deployment -o jsonpath='{.items[0].metadata.name}') -- /bin/bash -c "dotnet ef database update --context WeatherDBContext"
