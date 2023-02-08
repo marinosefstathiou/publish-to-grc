@@ -23,7 +23,6 @@ spec:
         - -c
         - |
           dotnet ef database update
-          dotnet KubeTestApi.dll
         resources:
           limits:
             memory: "128Mi"
