@@ -17,12 +17,11 @@ spec:
         #- name: TAG_VERSION
         #  value: 0.0.1
         image: ghcr.io/marinosefstathiou/firstimage:v1.0.0
-        #command:
-        #- /bin/sh
-        #- -c
-        #- |
-        #  dotnet restore
-        #  dotnet ef database update
+        - "/bin/bash"
+        - "-c"
+        - |
+          dotnet ef database update --context MyDbContext
+          dotnet run
         #env:
         #- name: ConnectionString
         #  value: "host=153.70.79.161,5432; Database =hippo;Persist Security Info=True;User ID=hippo;Password=2k(3Ty}w:+_|0p6]8@IGl=p["
