@@ -16,8 +16,13 @@ spec:
         #env:
         #- name: TAG_VERSION
         #  value: 0.0.1
-        image: ghcr.io/marinosefstathiou/firstimage:v2.0.0
-        command: ["dotnet-ef", "database", "update"]
+        image: ghcr.io/marinosefstathiou/firstimage:v3.0.0
+        command:
+        - /bin/sh
+        - -c
+        - |
+          dotnet restore
+          dotnet ef database update
         env:
         - name: ConnectionString
           value: "host=153.70.79.161,5432; Database =hippo;Persist Security Info=True;User ID=hippo;Password=2k(3Ty}w:+_|0p6]8@IGl=p["
