@@ -7,14 +7,14 @@ ENV ASPNETCORE_URLS=http://+:5150
 
 # NEW
 # Install the .NET Core SDK
-#RUN apt-get update && apt-get install -y wget
-#RUN wget https://packages.microsoft.com/config/ubuntu/20.04/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
-#RUN dpkg -i packages-microsoft-prod.deb
-#RUN apt-get update && apt-get install -y dotnet-sdk-6.0
+RUN apt-get update && apt-get install -y wget
+RUN wget https://packages.microsoft.com/config/ubuntu/20.04/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
+RUN dpkg -i packages-microsoft-prod.deb
+RUN apt-get update && apt-get install -y dotnet-sdk-6.0
 
 # NEW
 # Install the Entity Framework Core CLI tools
-#RUN dotnet tool install --global dotnet-ef
+RUN dotnet tool install --global dotnet-ef --version 7.0.2
 
 # Creates a non-root user with an explicit UID and adds permission to access the /app folder
 # For more info, please refer to https://aka.ms/vscode-docker-dotnet-configure-containers
@@ -30,7 +30,7 @@ WORKDIR "/src/."
 RUN dotnet build "KubeTestAPI.csproj" -c Release -o /app/build
 
 # NEW
-RUN dotnet restore
+#RUN dotnet restore
 
 FROM build AS publish
 RUN dotnet publish "KubeTestAPI.csproj" -c Release -o /app/publish /p:UseAppHost=false
