@@ -15,7 +15,6 @@ RUN apt-get update && apt-get install -y dotnet-sdk-6.0
 # NEW
 # Install the Entity Framework Core CLI tools
 RUN dotnet tool install --global dotnet-ef
-ENV PATH="$PATH:/root/.dotnet/tools"
 
 # Restore the packages
 RUN dotnet restore
