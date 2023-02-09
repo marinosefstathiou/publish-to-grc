@@ -11,6 +11,10 @@ spec:
       labels:
         app:  kubetestapi-deployment
     spec:
+     initContainers:
+      - name: db-migrations
+        image: myapp-migrations
+        command: ["dotnet", "ef", "database", "update", "--startup-project", "KubeTestAPI"]
       containers:
       - name:  kubetestapi-deployment
         env:
