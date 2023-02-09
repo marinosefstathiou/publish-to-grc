@@ -43,6 +43,3 @@ FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
 ENTRYPOINT ["dotnet", "KubeTestAPI.dll"]
-
-# Run migrations
-RUN dotnet ef database update
