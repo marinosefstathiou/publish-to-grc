@@ -20,7 +20,7 @@ spec:
         - "/bin/bash"
         - "-c"
         - |
-          dotnet ef database update --context MyDbContext
+          dotnet ef database update --context WeatherDBContext
           dotnet run
         #env:
         #- name: ConnectionString
