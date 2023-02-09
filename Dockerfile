@@ -6,6 +6,12 @@ EXPOSE 5150
 ENV ASPNETCORE_URLS=http://+:5150
 
 # NEW
+RUN apt-get update
+&& apt-get install -y wget
+&& wget -q https://packages.microsoft.com/config/ubuntu/20.04/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
+&& dpkg -i packages-microsoft-prod.deb
+&& apt-get update
+&& apt-get install -y dotnet-runtime-6.0
 # Install the .NET Core SDK
 #RUN apt-get update && apt-get install -y wget
 #RUN wget https://packages.microsoft.com/config/ubuntu/20.04/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
