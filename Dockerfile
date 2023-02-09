@@ -22,9 +22,6 @@ RUN dotnet restore
 # Build the project
 RUN dotnet publish -c Release -o out
 
-# Run migrations
-RUN dotnet ef database update
-
 # Creates a non-root user with an explicit UID and adds permission to access the /app folder
 # For more info, please refer to https://aka.ms/vscode-docker-dotnet-configure-containers
 RUN adduser -u 5678 --disabled-password --gecos "" appuser && chown -R appuser /app
@@ -45,3 +42,6 @@ FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
 ENTRYPOINT ["dotnet", "KubeTestAPI.dll"]
+
+# Run migrations
+RUN dotnet ef database update
