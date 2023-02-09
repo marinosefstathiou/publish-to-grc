@@ -14,6 +14,7 @@ spec:
       containers:
       - name:  kubetestapi-deployment
         image: ghcr.io/marinosefstathiou/firstimage:v2.2.2
+        command:
         - "/bin/bash"
         - "-c"
         - |
