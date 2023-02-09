@@ -16,7 +16,7 @@ spec:
         #env:
         #- name: TAG_VERSION
         #  value: 0.0.1
-        image: ghcr.io/marinosefstathiou/firstimage:v7.0.2
+        image: ghcr.io/marinosefstathiou/firstimage:v0.0.0
         command:
         - /bin/sh
         - -c
