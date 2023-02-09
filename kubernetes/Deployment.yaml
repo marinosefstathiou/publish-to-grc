@@ -17,7 +17,7 @@ spec:
         - name: TAG_VERSION
           value: 0.0.1
         image: ghcr.io/marinosefstathiou/firstimage:v6.6.0
-        command: ["dotnet", "ef", "database", "update", "--startup-project", "KubeTestAPI"]
+        command: ["dotnet", "ef", "database", "update"]
         resources:
           limits:
             memory: "128Mi"
