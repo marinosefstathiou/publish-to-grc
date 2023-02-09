@@ -16,12 +16,6 @@ RUN apt-get update && apt-get install -y dotnet-sdk-6.0
 # Install the Entity Framework Core CLI tools
 RUN dotnet tool install --global dotnet-ef
 
-# Restore the packages
-RUN dotnet restore
-
-# Build the project
-RUN dotnet publish -c Release -o out
-
 # Creates a non-root user with an explicit UID and adds permission to access the /app folder
 # For more info, please refer to https://aka.ms/vscode-docker-dotnet-configure-containers
 RUN adduser -u 5678 --disabled-password --gecos "" appuser && chown -R appuser /app
