@@ -11,7 +11,5 @@ namespace KubeTestAPI.DBContext
 
         public DbSet<Locations> Locations { get; set; }
         public DbSet<Temperatures> Temperatures { get; set; }
-
-        public DbSet<Temperatures> Test { get; set; }
     }
 }
