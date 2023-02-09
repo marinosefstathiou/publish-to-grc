@@ -5,8 +5,14 @@ EXPOSE 5150
 
 ENV ASPNETCORE_URLS=http://+:5150
 
-# Install the .NET SDK
-#RUN apt-get update && apt-get install -y dotnet-sdk-6.0.100
+# Install the .NET Core SDK
+RUN apt-get update && apt-get install -y wget
+RUN wget https://packages.microsoft.com/config/ubuntu/20.04/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
+RUN dpkg -i packages-microsoft-prod.deb
+RUN apt-get update && apt-get install -y dotnet-sdk-3.1
+
+# Install the Entity Framework Core CLI tools
+RUN dotnet tool install --global dotnet-ef
 
 # Creates a non-root user with an explicit UID and adds permission to access the /app folder
 # For more info, please refer to https://aka.ms/vscode-docker-dotnet-configure-containers
