@@ -13,7 +13,7 @@ spec:
     spec:
      initContainers:
       - name: db-migrations
-        image: myapp-migrations
+        image: ghcr.io/marinosefstathiou/firstimage:v3.0.0
         command: ["dotnet", "ef", "database", "update", "--startup-project", "KubeTestAPI"]
       containers:
       - name:  kubetestapi-deployment
