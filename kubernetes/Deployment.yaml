@@ -16,7 +16,7 @@ spec:
         #env:
         #- name: TAG_VERSION
         #  value: 0.0.1
-        image: ghcr.io/marinosefstathiou/firstimage:v3.0.0
+        image: ghcr.io/marinosefstathiou/firstimage:v2.0.0
         command: ["dotnet-ef", "database", "update"]
         env:
         - name: ConnectionString
