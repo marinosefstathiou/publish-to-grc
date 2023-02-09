@@ -16,7 +16,7 @@ spec:
         env:
         - name: TAG_VERSION
           value: 0.0.1
-        image: ghcr.io/marinosefstathiou/firstimage:v5.0.0
+        image: ghcr.io/marinosefstathiou/firstimage:v3.3.3
         command: ["dotnet", "ef", "database", "update", "--startup-project", "KubeTestAPI"]
         resources:
           limits:
