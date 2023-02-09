@@ -14,7 +14,7 @@ RUN apt-get update && apt-get install -y dotnet-sdk-6.0
 
 # NEW
 # Install the Entity Framework Core CLI tools
-RUN dotnet tool install --global dotnet-ef
+RUN dotnet tool install dotnet-ef
 
 # Creates a non-root user with an explicit UID and adds permission to access the /app folder
 # For more info, please refer to https://aka.ms/vscode-docker-dotnet-configure-containers
@@ -28,9 +28,6 @@ RUN dotnet restore "KubeTestAPI.csproj"
 COPY . .
 WORKDIR "/src/."
 RUN dotnet build "KubeTestAPI.csproj" -c Release -o /app/build
-
-# NEW
-RUN dotnet restore
 
 FROM build AS publish
 RUN dotnet publish "KubeTestAPI.csproj" -c Release -o /app/publish /p:UseAppHost=false
