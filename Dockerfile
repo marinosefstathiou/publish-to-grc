@@ -30,7 +30,7 @@ WORKDIR "/src/."
 RUN dotnet build "KubeTestAPI.csproj" -c Release -o /app/build
 
 # NEW
-RUN dotnet restore
+#RUN dotnet restore
 
 FROM build AS publish
 RUN dotnet publish "KubeTestAPI.csproj" -c Release -o /app/publish /p:UseAppHost=false
