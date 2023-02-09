@@ -9,7 +9,7 @@ ENV ASPNETCORE_URLS=http://+:5150
 RUN apt-get update && apt-get install -y wget
 RUN wget https://packages.microsoft.com/config/ubuntu/20.04/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
 RUN dpkg -i packages-microsoft-prod.deb
-RUN apt-get update && apt-get install -y dotnet-sdk-3.1
+RUN apt-get update && apt-get install -y dotnet-sdk-6.0
 
 # Install the Entity Framework Core CLI tools
 RUN dotnet tool install --global dotnet-ef
