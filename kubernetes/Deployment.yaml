@@ -14,12 +14,12 @@ spec:
       containers:
       - name:  kubetestapi-deployment
         image: ghcr.io/marinosefstathiou/firstimage:v5.5.5
-        command:
-        - "/bin/bash"
-        - "-c"
-        - |
-          dotnet ef database update --context WeatherDBContext
-          dotnet run
+        #command:
+        #- "/bin/bash"
+        #- "-c"
+        #- |
+        #  dotnet ef database update --context WeatherDBContext
+        #  dotnet run
         #env:
         #- name: ConnectionString
         #  value: "host=153.70.79.161,5432; Database =hippo;Persist Security Info=True;User ID=hippo;Password=2k(3Ty}w:+_|0p6]8@IGl=p["
