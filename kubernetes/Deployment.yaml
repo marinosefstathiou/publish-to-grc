@@ -14,11 +14,11 @@ spec:
       containers:
       - name:  kubetestapi-deployment
         image: ghcr.io/marinosefstathiou/firstimage:v8.8.8
-        #command:
-        #- "/bin/bash"
-        #- "-c"
-        #- |
-        #  dotnet ef database update --context WeatherDBContext
+        command:
+        - "/bin/bash"
+        - "-c"
+        - |
+          dotnet ef database update --context WeatherDBContext
         ports:
         - containerPort: 80
         resources:
