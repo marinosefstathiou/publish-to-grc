@@ -13,7 +13,7 @@ RUN dotnet build
 RUN dotnet --version
 RUN dotnet tool install --global dotnet-ef --version 6.0.0
 RUN dotnet tool list -g
-RUN dotnet dev-certs https --trust
+RUN dotnet dev-certs https --install
 ENV PATH="${PATH}:/root/.dotnet/tools"
 
 # Run the database migrations
