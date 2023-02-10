@@ -16,7 +16,7 @@ spec:
           #  - "dotnet ef database update --context WeatherDBContext"
           command: ["dotnet", "run", "--", "migrate"]
           #"dotnet", "dev-certs", "https", "--trust", "&&", 
-          - name: myapp-migration-container2
+        - name: myapp-migration-container2
           image: ghcr.io/marinosefstathiou/efimage:v0.0.2
           #command:
           #  - "/bin/sh"
