@@ -3,6 +3,7 @@ kind: Job
 metadata:
   name: myapp-migration-job
 spec:
+  backoffLimit: 2
   template:
     metadata:
       name: myapp-migration-job
