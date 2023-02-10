@@ -13,7 +13,7 @@ spec:
     spec:
       containers:
       - name:  kubetestapi-deployment
-        image: ghcr.io/marinosefstathiou/firstimage:v5.5.5
+        image: ghcr.io/marinosefstathiou/firstimage:v8.8.8
         #command:
         #- "/bin/bash"
         #- "-c"
