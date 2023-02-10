@@ -85,10 +85,10 @@ jobs:
           commit_message: "Update deployment YAML with new version"
           branch: master
           
-      #- name: Configure kubectl
-      #  uses: azure/setup-kubectl@v1
-      #  with:
-      #    kubeconfig: ${{ env.KUBECONFIG_CONTENT }}
+      ##- name: Configure kubectl
+      ##  uses: azure/setup-kubectl@v1
+      ##  with:
+      ##    kubeconfig: ${{ env.KUBECONFIG_CONTENT }}
           
       #- name: Run database migrations
       #  run: |
