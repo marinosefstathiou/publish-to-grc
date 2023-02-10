@@ -6,30 +6,25 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace KubeTestAPI.Migrations
 {
     /// <inheritdoc />
-    public partial class ThirdMigration : Migration
+    public partial class testmigration : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.AlterColumn<string>(
+            migrationBuilder.AddColumn<DateOnly>(
                 name: "Timestamp",
                 table: "Temperatures",
-                type: "text",
+                type: "date",
                 nullable: false,
-                oldClrType: typeof(DateTime),
-                oldType: "timestamp with time zone");
+                defaultValue: new DateOnly(1, 1, 1));
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.AlterColumn<DateTime>(
+            migrationBuilder.DropColumn(
                 name: "Timestamp",
-                table: "Temperatures",
-                type: "timestamp with time zone",
-                nullable: false,
-                oldClrType: typeof(string),
-                oldType: "text");
+                table: "Temperatures");
         }
     }
 }

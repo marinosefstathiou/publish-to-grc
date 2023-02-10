@@ -44,8 +44,8 @@ namespace KubeTestAPI.Migrations
                     b.Property<decimal>("Temperature")
                         .HasColumnType("numeric");
 
-                    b.Property<DateTime>("Timestamp")
-                        .HasColumnType("timestamp with time zone");
+                    b.Property<DateOnly>("Timestamp")
+                        .HasColumnType("date");
 
                     b.HasKey("LocationID");
 
