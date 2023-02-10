@@ -1,0 +1,17 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: myapp-migration-job
+spec:
+  template:
+    metadata:
+      name: myapp-migration-job
+    spec:
+      containers:
+        - name: myapp-migration-container
+          image: efimage:v5.5.5
+          command:
+            - "/bin/sh"
+            - "-c"
+            - "dotnet ef database update --context WeatherDBContext"
+      restartPolicy: OnFailure
