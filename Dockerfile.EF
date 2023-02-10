@@ -11,6 +11,7 @@ COPY . .
 RUN dotnet restore
 RUN dotnet build
 RUN dotnet --version
+RUN dotnet tool install --global dotnet-ef --version 6.0.0
 RUN dotnet tool list -g | grep 'EntityFrameworkCore.Tools'
 ENV PATH="${PATH}:/root/.dotnet/tools"
 
