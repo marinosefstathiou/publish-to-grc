@@ -10,10 +10,10 @@ spec:
       containers:
         - name: myapp-migration-container
           image: ghcr.io/marinosefstathiou/efimage:v4.4.4
-          command:
-            - "/bin/sh"
-            - "-c"
-            - "dotnet ef database update --context WeatherDBContext"
+          #command:
+          #  - "/bin/sh"
+          #  - "-c"
+          #  - "dotnet ef database update --context WeatherDBContext"
       #imagePullSecrets:
       #  - name: githubsecret
       restartPolicy: OnFailure
