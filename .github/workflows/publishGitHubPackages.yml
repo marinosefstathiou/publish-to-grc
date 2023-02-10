@@ -75,7 +75,7 @@ jobs:
           echo "Current directory: $(pwd)"
           ls -la
           cd kubernetes
-          sed -i "s/firstimage:.*/efimage:${NEW_VERSION}/" efJob.yaml
+          sed -i "s/efimage:.*/efimage:${NEW_VERSION}/" efJob.yaml
           
       - name: Commit and push changes
         if: env.NEW_VERSION != ''
