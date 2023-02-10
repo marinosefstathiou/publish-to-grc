@@ -20,7 +20,7 @@ spec:
             - "myapp-migration-job"
       containers:
       - name:  kubetestapi-deployment
-        image: ghcr.io/marinosefstathiou/firstimage:v5.5.5
+        image: ghcr.io/marinosefstathiou/firstimage:v2.2.2
         #command:
         #- "/bin/bash"
         #- "-c"
