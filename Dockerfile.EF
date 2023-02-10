@@ -12,7 +12,7 @@ RUN dotnet restore
 RUN dotnet build
 RUN dotnet --version
 RUN dotnet tool install --global dotnet-ef --version 6.0.0
-RUN dotnet tool list -g | grep 'EntityFrameworkCore.Tools'
+RUN dotnet tool list -g
 ENV PATH="${PATH}:/root/.dotnet/tools"
 
 # Run the database migrations
