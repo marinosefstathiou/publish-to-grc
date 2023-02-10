@@ -14,4 +14,6 @@ spec:
             - "/bin/sh"
             - "-c"
             - "dotnet ef database update --context WeatherDBContext"
+        imagePullSecrets:
+          - name: githubsecret
       restartPolicy: OnFailure
