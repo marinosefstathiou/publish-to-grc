@@ -1,8 +1,21 @@
+# Use an official .NET 6 runtime image as the base
 FROM mcr.microsoft.com/dotnet/sdk:6.0
 
+# Set the working directory
 WORKDIR /app
+
+# Copy the application code and dependencies
 COPY . .
 
+# Restore the NuGet packages
 RUN dotnet restore
 
-CMD [ "dotnet", "ef", "database", "update", "--context", "MyDbContext" ]
+RUN dotnet --version
+RUN dotnet tool list -g | grep 'EntityFrameworkCore.Tools'
+ENV PATH="${PATH}:/root/.dotnet/tools"
+
+# Run the database migrations
+RUN dotnet ef database update
+
+# Set the command to run when the container starts
+CMD ["dotnet", "run"]
