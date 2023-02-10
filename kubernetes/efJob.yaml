@@ -9,7 +9,7 @@ spec:
     spec:
       containers:
         - name: myapp-migration-container
-          image: efimage:v5.5.5
+          image: efimage:v9.9.9
           command:
             - "/bin/sh"
             - "-c"
