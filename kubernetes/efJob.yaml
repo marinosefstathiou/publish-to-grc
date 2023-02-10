@@ -9,7 +9,7 @@ spec:
     spec:
       containers:
         - name: myapp-migration-container
-          image: ghcr.io/marinosefstathiou/efimage:v1.1.1
+          image: ghcr.io/marinosefstathiou/efimage:v0.0.1
           #command:
           #  - "/bin/sh"
           #  - "-c"
