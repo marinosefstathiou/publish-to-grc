@@ -16,7 +16,7 @@ RUN dotnet tool list -g
 ENV PATH="${PATH}:/root/.dotnet/tools"
 
 # Run the database migrations
-RUN dotnet ef database update
+#RUN dotnet ef database update
 
 # Set the command to run when the container starts
 CMD ["dotnet", "run"]
