@@ -59,8 +59,10 @@ jobs:
       - name: Build Docker Image if version exist
         run: |
           docker build . --tag ghcr.io/marinosefstathiou/firstimage:${NEW_VERSION} || echo "Error: Version not found in the commit message docker build will not execute"
-          docker push ghcr.io/marinosefstathiou/firstimage:${NEW_VERSION} || echo "Error: Version not found in the commit message docker push will not execute"
-      
+          docker push ghcr.io/marinosefstathiou/firstimage:${NEW_VERSION} || echo "Error: Version not found in the commit message docker push will not execute"    
+          docker build -f Dockerfile.EF  --tag ghcr.io/marinosefstathiou/efimage:${NEW_VERSION} || echo "Error: Version not found in the commit message docker build will not execute"
+          docker push ghcr.io/marinosefstathiou/efimage:${NEW_VERSION} || echo "Error: Version not found in the commit message docker push will not execute"
+
       - name: Replace image
         run: |
           echo "Current directory: $(pwd)"
