@@ -1,7 +1,9 @@
 # Use an official .NET 6 runtime image as the base
 FROM mcr.microsoft.com/dotnet/sdk:6.0
-RUN dotnet dev-certs https --install
-RUN dotnet dev-certs https --trust
+
+#RUN dotnet dev-certs https --install
+#RUN dotnet dev-certs https --trust
+
 # Set the working directory
 WORKDIR /app
 
