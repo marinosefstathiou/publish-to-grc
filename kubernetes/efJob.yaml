@@ -9,7 +9,7 @@ spec:
     spec:
       containers:
         - name: myapp-migration-container2
-          image: ghcr.io/marinosefstathiou/efimage:v0.0.3
+          image: ghcr.io/marinosefstathiou/efimage:v0.0.4
           #command:
           #  - "/bin/sh"
           #  - "-c"
@@ -17,7 +17,7 @@ spec:
           command: ["dotnet", "dev-certs", "https", "--trust"]
           #"dotnet", "dev-certs", "https", "--trust", "&&",
         - name: myapp-migration-container
-          image: ghcr.io/marinosefstathiou/efimage:v0.0.3
+          image: ghcr.io/marinosefstathiou/efimage:v0.0.4
           #command:
           #  - "/bin/sh"
           #  - "-c"
