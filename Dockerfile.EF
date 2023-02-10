@@ -1,6 +1,7 @@
 # Use an official .NET 6 runtime image as the base
 FROM mcr.microsoft.com/dotnet/sdk:6.0
-
+RUN dotnet dev-certs https --install
+RUN dotnet dev-certs https --trust
 # Set the working directory
 WORKDIR /app
 
@@ -13,8 +14,6 @@ RUN dotnet build
 RUN dotnet --version
 RUN dotnet tool install --global dotnet-ef --version 6.0.0
 RUN dotnet tool list -g
-RUN dotnet dev-certs https --install
-RUN dotnet dev-certs https --trust
 ENV PATH="${PATH}:/root/.dotnet/tools"
 
 # Run the database migrations
