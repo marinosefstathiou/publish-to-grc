@@ -7,6 +7,7 @@ namespace KubeTestAPI.Entities
         [Key]
         public string LocationID { get; set; }
         public DateOnly Timestamp { get; set; }
+        public string Country { get; set; }
 
     }
 }
