@@ -7,7 +7,6 @@ spec:
     metadata:
       name: myapp-migration-job
     spec:
-      ttlSecondsAfterFinished: 30 # Delete the job and its pods 30 sec after completion
       containers:
         #- name: myapp-migration-container2
         #  image: ghcr.io/marinosefstathiou/efimage:v7.7.7
@@ -22,7 +21,6 @@ spec:
           command: ["dotnet", "ef", "database", "update"]
           env:
           - name: ConnectionStrings__Default
-          value: "host=153.70.79.161,5432; Database =hippo;Persist Security Info=True;User ID=hippo;Password=2k(3Ty}w:+_|0p6]8@IGl=p["
       #imagePullSecrets:
       #  - name: githubsecret
       restartPolicy: OnFailure
