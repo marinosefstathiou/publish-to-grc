@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace KubeTestAPI.Migrations
 {
     [DbContext(typeof(WeatherDBContext))]
-    [Migration("20230214105802_test021420231257")]
-    partial class test021420231257
+    [Migration("20230214111936_test02142023120")]
+    partial class test02142023120
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

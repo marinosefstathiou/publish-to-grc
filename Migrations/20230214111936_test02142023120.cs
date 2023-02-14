@@ -5,7 +5,7 @@
 namespace KubeTestAPI.Migrations
 {
     /// <inheritdoc />
-    public partial class test021420231257 : Migration
+    public partial class test02142023120 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
