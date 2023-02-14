@@ -7,6 +7,7 @@ spec:
     metadata:
       name: myapp-migration-job
     spec:
+      ttlSecondsAfterFinished: 30 # Delete the job and its pods 30 sec after completion
       containers:
         #- name: myapp-migration-container2
         #  image: ghcr.io/marinosefstathiou/efimage:v5.5.5
