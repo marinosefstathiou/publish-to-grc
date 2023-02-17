@@ -84,7 +84,6 @@ jobs:
           token: ${{ secrets.GITHUBREPO }}
           commit_message: "Update deployment YAML with new version"
           branch: master
-          
       ##- name: Configure kubectl
       ##  uses: azure/setup-kubectl@v1
       ##  with:
