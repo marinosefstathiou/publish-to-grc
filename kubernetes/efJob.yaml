@@ -2,29 +2,16 @@ apiVersion: batch/v1
 kind: Job
 metadata:
   name: myapp-migration-job
-  #annotations:
-  #  argocd.argoproj.io/hook: Sync
-  #  argocd.argoproj.io/hook-delete-policy: HookSucceeded
 spec:
   template:
     metadata:
       name: myapp-migration-job
     spec:
       containers:
-        #- name: myapp-migration-container2
-        #  image: ghcr.io/marinosefstathiou/efimage:v5.0.0
-        #  command: ["dotnet", "dev-certs", "https", "--trust"]
         - name: myapp-migration-container
           image: ghcr.io/marinosefstathiou/efimage:v5.0.0
-          #command:
-          #  - "/bin/sh"
-          #  - "-c"
-          #  - "dotnet ef database update --context WeatherDBContext"
-          #command: ["dotnet", "run", "--", "migrate"] 
           command: ["dotnet", "ef", "database", "update"]
           env:
           - name: ConnectionStrings__Default
             value: "host=153.70.79.161,5432; Database =hippo;Persist Security Info=True;User ID=hippo;Password=2k(3Ty}w:+_|0p6]8@IGl=p["
-      #imagePullSecrets:
-      #  - name: githubsecret
       restartPolicy: OnFailure
