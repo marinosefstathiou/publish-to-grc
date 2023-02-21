@@ -1,0 +1,27 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Workflow
+metadata:
+  generateName: my-workflow-
+spec:
+  entrypoint: run-job
+  templates:
+  - name: run-job
+    container:
+      image: my-job-image
+    # Add any necessary command or arguments here
+    # to run the job
+    # ...
+    outputs:
+      parameters:
+        deployment-name: "{{steps.start-deployment.outputs.deployment-name}}"
+  - name: start-deployment
+    resource:
+      action: create
+      manifest: |
+        apiVersion: apps/v1
+        kind: Deployment
+        metadata:
+          name: my-deployment
+        spec:
+          # Add any necessary deployment spec here
+          # ...
