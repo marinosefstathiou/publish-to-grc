@@ -3,6 +3,8 @@ kind: Job
 metadata:
   name: myapp-migration-job
 spec:
+  ttlSecondsAfterFinished: 100
+  backoffLimit: 4
   template:
     metadata:
       name: myapp-migration-job
