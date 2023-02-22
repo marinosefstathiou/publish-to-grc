@@ -13,46 +13,26 @@ spec:
       - name: ConnectionStrings__Default
         value: "host=153.70.79.161,5432; Database =hippo;Persist Security Info=True;User ID=hippo;Password=2k(3Ty}w:+_|0p6]8@IGl=p["
     restartPolicy: OnFailure
-  - name: run-deployment
-	apiVersion: apps/v1  
-	kind: Deployment
-	metadata:
-	  name: kubetestapi-deployment
-	spec:
-	  selector:
-		matchLabels:
-		  app: kubetestapi-deployment
-	  template:
-		metadata:
-		  labels:
-			app:  kubetestapi-deployment
-		spec:
-		  initContainers:
-			- name: wait-for-onezone
-			  image: ghcr.io/groundnuty/k8s-wait-for:v1.6
-			  imagePullPolicy: Always
-			  args:
-				- "job"
-				- "myapp-migration-job"
-		  containers:
-		  - name:  kubetestapi-deployment
-			image: ghcr.io/marinosefstathiou/firstimage:v9.9.9
-			#command:
-			#- "/bin/bash"
-			#- "-c"
-			#- |
-			#  dotnet ef database update --context WeatherDBContext
-			ports:
-			- containerPort: 80
-			resources:
-			  requests:
-				memory: "200Mi"
-				cpu: "1"
-			  limits:
-				memory: "200Mi"
-				cpu: "1"
-		  imagePullSecrets:
-			- name: githubsecret
+  - name: run-deployment  
+    containers:
+	  - name:  kubetestapi-deployment
+		image: ghcr.io/marinosefstathiou/firstimage:v9.9.9
+		#command:
+		#- "/bin/bash"
+		#- "-c"
+		#- |
+		#  dotnet ef database update --context WeatherDBContext
+		ports:
+		- containerPort: 80
+		resources:
+		  requests:
+			memory: "200Mi"
+			cpu: "1"
+		  limits:
+			memory: "200Mi"
+			cpu: "1"
+  imagePullSecrets:
+	- name: githubsecret
   - name: run-job-and-deployment
     steps:
     - - name: run-job
