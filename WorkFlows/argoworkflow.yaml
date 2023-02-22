@@ -15,24 +15,19 @@ spec:
     restartPolicy: OnFailure
   - name: run-deployment  
     containers:
-	  - name:  kubetestapi-deployment
-		image: ghcr.io/marinosefstathiou/firstimage:v9.9.9
-		#command:
-		#- "/bin/bash"
-		#- "-c"
-		#- |
-		#  dotnet ef database update --context WeatherDBContext
-		ports:
-		- containerPort: 80
-		resources:
-		  requests:
-			memory: "200Mi"
-			cpu: "1"
-		  limits:
-			memory: "200Mi"
-			cpu: "1"
-  imagePullSecrets:
-	- name: githubsecret
+    - name:  kubetestapi-deployment
+      image: ghcr.io/marinosefstathiou/firstimage:v9.9.9
+      ports:
+      - containerPort: 80
+      resources:
+        requests:
+	  memory: "200Mi"
+	  cpu: "1"
+	limits:
+	  memory: "200Mi"
+	  cpu: "1"
+    imagePullSecrets:
+      - name: githubsecret
   - name: run-job-and-deployment
     steps:
     - - name: run-job
