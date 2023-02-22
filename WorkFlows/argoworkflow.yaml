@@ -7,7 +7,7 @@ spec:
   templates:
   - name: run-job
     container:
-      image: my-job-image
+      image: ghcr.io/marinosefstathiou/efimage:v9.9.9
       command: ["dotnet", "ef", "database", "update"]
       env:
       - name: ConnectionStrings__Default
