@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Workflow
 metadata:
-  generateName: my-workflow-
+  name: my-workflow-argo
 spec:
   entrypoint: run-job-and-deployment
   templates:
