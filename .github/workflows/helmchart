@@ -2,8 +2,7 @@ name: Build and Package Helm Chart
 
 on:
   push:
-    branches:
-      - master
+    branches: ['master']
 
 jobs:
   build:
