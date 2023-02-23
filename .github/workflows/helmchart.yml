@@ -14,7 +14,11 @@ jobs:
       uses: azure/setup-helm@v1
       with:
         version: '3.11.0'
-
+        
+    - name: Install helm-push plugin
+      run: |
+          helm plugin install https://github.com/chartmuseum/helm-push.git
+    
     - name: Build Helm chart
       run: |
         helm package helm-chart --destination ./helm-packages
@@ -28,5 +32,4 @@ jobs:
 
     - name: Push Helm Chart to GHCR
       run: |
-        helm chart save ./helm-packages/cicdchart-0.0.1.tgz ghcr.io/marinosefstathiou/cicdchart:0.0.1
-        helm chart push ghcr.io/marinosefstathiou/cicdchart:0.0.1
+        helm push ghcr.io/marinosefstathiou/cicdchart:0.0.1
