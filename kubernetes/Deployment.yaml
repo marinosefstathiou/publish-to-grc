@@ -21,6 +21,10 @@ spec:
       containers:
       - name:  kubetestapi-deployment
         image: ghcr.io/marinosefstathiou/firstimage:v9.9.9
+        lifecycle:
+          preStart:
+            exec:
+              command: ["sh", "-c", "until kubectl get job myapp-migration-job -o jsonpath='{.status.conditions[?(@.type==\"Complete\")].status}' | grep True; do sleep 1; done"]
         #command:
         #- "/bin/bash"
         #- "-c"
@@ -35,9 +39,5 @@ spec:
           limits:
             memory: "200Mi"
             cpu: "1"
-        lifecycle:
-          postStart:
-            exec:
-              command: ["sh", "-c", "until kubectl get job myapp-migration-job -o jsonpath='{.status.conditions[?(@.type==\"Complete\")].status}' | grep True; do sleep 1; done"]
       imagePullSecrets:
         - name: githubsecret
