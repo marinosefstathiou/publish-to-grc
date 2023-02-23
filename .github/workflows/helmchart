@@ -1,0 +1,32 @@
+name: Build and Package Helm Chart
+
+on:
+  push:
+    branches: ['master']
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Set up Helm CLI
+      uses: azure/setup-helm@v1
+      with:
+        version: '3.7.1'
+
+    - name: Build Helm chart
+      run: |
+        helm package helm-chart --destination ./helm-packages
+
+    - name: Log in to the Container registry
+      uses: docker/login-action@v2
+      with:
+        registry: ghcr.io
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUBREPO }}
+
+    - name: Push Helm Chart to GHCR
+      run: |
+        helm chart save ./helm-packages/cicdchart-0.0.1.tgz ghcr.io/marinosefstathiou/cicdchart:0.0.1
+        helm chart push ghcr.io/marinosefstathiou/cicdchart:0.0.1
