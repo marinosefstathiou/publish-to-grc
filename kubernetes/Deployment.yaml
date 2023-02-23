@@ -35,9 +35,9 @@ spec:
           limits:
             memory: "200Mi"
             cpu: "1"
-      lifecycle:
-        postStart:
-          exec:
-            command: ["sh", "-c", "until kubectl get job myapp-migration-job -o jsonpath='{.status.conditions[?(@.type==\"Complete\")].status}' | grep True; do sleep 1; done"]
+        lifecycle:
+          postStart:
+            exec:
+              command: ["sh", "-c", "until kubectl get job myapp-migration-job -o jsonpath='{.status.conditions[?(@.type==\"Complete\")].status}' | grep True; do sleep 1; done"]
       imagePullSecrets:
         - name: githubsecret
