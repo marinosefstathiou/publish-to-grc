@@ -63,11 +63,18 @@ jobs:
           docker build -f Dockerfile.EF --tag ghcr.io/marinosefstathiou/efimage:${NEW_VERSION} . || echo "Error: Version not found in the commit message docker build will not execute"
           docker push ghcr.io/marinosefstathiou/efimage:${NEW_VERSION} || echo "Error: Version not found in the commit message docker push will not execute"
 
-      - name: Replace image
+      - name: Replace image Plain Deployment
         run: |
           echo "Current directory: $(pwd)"
           ls -la
           cd kubernetes
+          sed -i "s/firstimage:.*/firstimage:${NEW_VERSION}/" Deployment.yaml
+          
+      - name: Replace image Helm Deployment
+        run: |
+          echo "Current directory: $(pwd)"
+          ls -la
+          cd helm-chart
           sed -i "s/firstimage:.*/firstimage:${NEW_VERSION}/" Deployment.yaml
           
       - name: Replace image
