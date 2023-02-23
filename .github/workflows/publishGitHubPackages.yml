@@ -74,7 +74,7 @@ jobs:
         run: |
           echo "Current directory: $(pwd)"
           ls -la
-          cd helm-chart
+          cd helm-chart/templates
           sed -i "s/firstimage:.*/firstimage:${NEW_VERSION}/" Deployment.yaml
           
       - name: Replace image
@@ -91,11 +91,3 @@ jobs:
           token: ${{ secrets.GITHUBREPO }}
           commit_message: "Update deployment YAML with new version"
           branch: master
-      ##- name: Configure kubectl
-      ##  uses: azure/setup-kubectl@v1
-      ##  with:
-      ##    kubeconfig: ${{ env.KUBECONFIG_CONTENT }}
-          
-      #- name: Run database migrations
-      #  run: |
-      #    kubectl exec -it $(kubectl get pods -l app=kubetestapi-deployment -o jsonpath='{.items[0].metadata.name}') -- /bin/bash -c "dotnet ef database update --context WeatherDBContext"
