@@ -11,20 +11,16 @@ spec:
       labels:
         app:  kubetestapi-deployment
     spec:
-      #initContainers:
-      #  - name: wait-for-onezone
-      #    image: ghcr.io/groundnuty/k8s-wait-for:v1.6
-      #    imagePullPolicy: Always
-      #    args:
-      #      - "job"
-      #      - "myapp-migration-job"
+      initContainers:
+        - name: wait-for-onezone
+          image: ghcr.io/groundnuty/k8s-wait-for:v1.6
+          imagePullPolicy: Always
+          args:
+            - "job"
+            - "myapp-migration-job"
       containers:
       - name:  kubetestapi-deployment
         image: ghcr.io/marinosefstathiou/firstimage:v9.9.9
-        lifecycle:
-          preStart:
-            exec:
-              command: ["sh", "-c", "until kubectl get job myapp-migration-job -o jsonpath='{.status.conditions[?(@.type==\"Complete\")].status}' | grep True; do sleep 1; done"]
         #command:
         #- "/bin/bash"
         #- "-c"
