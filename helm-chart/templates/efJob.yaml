@@ -1,0 +1,19 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: myapp-migration-job
+  annotations:
+    "helm.sh/hook": pre-install
+spec:
+  template:
+    metadata:
+      name: myapp-migration-job
+    spec:
+      containers:
+        - name: myapp-migration-container
+          image: ghcr.io/marinosefstathiou/efimage:v9.9.9
+          command: ["dotnet", "ef", "database", "update"]
+          env:
+          - name: ConnectionStrings__Default
+            value: "host=153.70.79.161,5432; Database =hippo;Persist Security Info=True;User ID=hippo;Password=2k(3Ty}w:+_|0p6]8@IGl=p["
+      restartPolicy: OnFailure
