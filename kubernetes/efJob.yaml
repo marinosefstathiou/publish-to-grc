@@ -9,7 +9,7 @@ spec:
     spec:
       containers:
         - name: myapp-migration-container
-          image: ghcr.io/marinosefstathiou/efimage:v2.2.2
+          image: ghcr.io/marinosefstathiou/efimage:v4.4.4
           command: ["dotnet", "ef", "database", "update"]
           env:
           - name: ConnectionStrings__Default
